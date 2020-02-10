@@ -1,0 +1,16 @@
+table	{
+	display: inline-block;
+	width: 80%;
+
+}
+
+td tr {
+	padding: 5px;
+}
+body {
+	font-family: arial;
+	font-size: 20px;
+	background-color: #ddd;
+}
+
+tr:
