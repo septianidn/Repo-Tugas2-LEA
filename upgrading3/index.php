@@ -61,9 +61,9 @@ $status = mysqli_fetch_assoc($hasil);
  		if (password_verify($password, $row["password"])){
  			//cek session
 
- 			$_SESSION = $status;
+ 			$_SESSION = base64_encode($status);
  			$_SESSION['username'] = $_POST['username'];
-
+var_dump($_SESSION); die;
  			// cek cookie
  			if (isset($_POST["cek"])){
  				//buat cookie

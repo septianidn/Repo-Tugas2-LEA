@@ -26,7 +26,7 @@ $id = $_GET["id"];
 //query data stok berdasarkan id
 
 $item = query("SELECT * FROM stok where id = $id")[0];
-
+$kode = query("SELECT kode FROM stok");
 
 if ( isset($_POST["submit"])){
 
@@ -116,11 +116,22 @@ if ( isset($_POST["submit"])){
     					<label for="kode">Kode Barang</label>
     				</div>
     				<div class="col-md-5">
-    					<input class="form-control" type="text" name="kode" id="kode" required value="<?= $item["kode"]; ?>">
-    				</div>		
 
-    			</div>
-    		</div>
+    					<select name="kode" class="form-control">
+                            <?php  for ($i=0; $i<count($kode); $i++) {
+                            
+
+                            echo '<option value="">'.$kode[$i]['kode'].'</option>';
+                            
+                            }    
+                            
+                            ?>
+
+                        </select>
+                    </div>      
+
+                </div>
+            </div>
 		
 		<div class="form-group">
     			

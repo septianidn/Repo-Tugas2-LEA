@@ -7,8 +7,12 @@ require 'functions.php';
 
 if (!isset($_SESSION) ){
 
-		header("Location: index.php");
-		exit;}
+        header("Location: index.php");
+        exit;}
+
+if ($_SESSION['status']== 'admin'){
+        header("Location: admin.php");
+    } 
 
 
 if ( isset($_GET["id"]) AND $_SESSION !=='')   {

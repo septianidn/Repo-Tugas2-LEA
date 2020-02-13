@@ -13,6 +13,42 @@ if ($_SESSION['status'] != 'admin'){
 	header("Location: error.php");
 	exit;
 }
+
+
+// untuk mencetak otomatis kode barang
+$no = mysqli_query($conn , "SELECT kode FROM stok ORDER BY kode DESC ");
+
+
+$kode_barang = mysqli_fetch_array($no);
+
+
+$kode = $kode_barang['kode'];
+
+$urut = substr($kode, 7, 3);
+
+
+
+$tambah = (int) $urut + 1;
+
+$bln = date("m");
+$thn = date("y");
+
+if (strlen($tambah)==1){
+
+    $format = "BRG".$bln.$thn."00".$tambah;
+
+}
+else if (strlen($tambah)==2){
+$format = "BRG".$bln.$thn."0".$tambah;
+}
+else{
+    $format = "BRG".$bln.$thn.$tambah;
+}
+
+// akhir dari proses mencetak kode barang secara otomatis
+
+
+
 if ( isset($_POST["submit"])){
 	
 	
@@ -95,16 +131,16 @@ if ( isset($_POST["submit"])){
 		<div class="form-group">
     			
     			<div class="row">
-    				
-    				<div class="col-md-2">
-    					<label for="kode">Kode Barang</label>
-    				</div>
-    				<div class="col-md-5">
-    					<input type="text" name="kode" id="kode" required class="form-control">
-    				</div>		
+                    
+                    <div class="col-md-2">
+                        <label for="kode">Kode Barang</label>
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text" name="kode" id="kode" required class="form-control" value="<?= $format;  ?>" readonly>
+                    </div>      
 
-    			</div>
-    		</div>
+                </div>
+            </div>
 
 
     		<div class="form-group">
@@ -129,7 +165,7 @@ if ( isset($_POST["submit"])){
     					<label for="harga">Harga</label>
     				</div>
     				<div class="col-md-5">
-    					<input type="text" name="harga" id="harga" required class="form-control">
+    					<input type="number" name="harga" id="harga" required class="form-control">
     				</div>		
 
     			</div>
@@ -144,7 +180,7 @@ if ( isset($_POST["submit"])){
     					<label for="stok">Stok</label>
     				</div>
     				<div class="col-md-5">
-    					<input type="text" name="stok" id="stok" required class="form-control">
+    					<input type="number" name="stok" id="stok" required class="form-control">
     				</div>		
 
     			</div>

@@ -34,7 +34,11 @@ if ($_SESSION['status'] != 'admin' AND $_SESSION['status'] != 'user'){
 
 
 $username = $_SESSION['username'];
-$history = query("SELECT * FROM sementara WHERE user = '$username' ORDER BY id ASC");
+$history = query("SELECT * FROM sementara WHERE user = '$username' AND status = 'Belum dicetak' ORDER BY id ASC");
+
+
+
+
 
  ?>
 

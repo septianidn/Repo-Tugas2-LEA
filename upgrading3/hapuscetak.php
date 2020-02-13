@@ -17,7 +17,12 @@ if ($_SESSION['status'] == NULL){
 
 $id = $_GET["id"];
 
-if (hapus2($id) > 0){
+
+
+$history = query("SELECT * FROM sementara WHERE id = '$id' " );
+
+
+if (hapus2($history, $id) > 0){
 
 	echo "
 			<script>

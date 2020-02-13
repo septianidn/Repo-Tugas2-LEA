@@ -102,10 +102,25 @@ mysqli_query($conn, "DELETE FROM stok WHERE id = $id");
 return mysqli_affected_rows($conn);
 }
 
-function hapus2($id){
+function hapus2($history, $id){
 
 global $conn;
-mysqli_query($conn, "DELETE FROM sementara WHERE id = $id");
+$kode=$history[0]['kode'];
+$nama=$history[0]['nama'];
+$harga=$history[0]['harga'];
+$jumlah=$history[0]['jumlah'];
+$tanggal=$history[0]['tanggal'];
+$alamat=$history[0]['alamat'];
+mysqli_query($conn, "UPDATE sementara
+					SET 
+					kode = '$kode',
+					nama = '$nama',
+					harga = '$harga',
+					jumlah = '$jumlah',
+					tanggal = '$tanggal',
+					alamat = '$alamat',
+					status = 'Dicetak'
+ WHERE id = $id");
 return mysqli_affected_rows($conn);
 }
 
@@ -215,7 +230,7 @@ function bayar($item,$data){
 	$jumlahS=$data["jumlah"];
 	$username = $_SESSION['username'];
 	$sementara = "INSERT INTO sementara VALUES 
-		('','$kodeS','$namaS','$hargaS','$jumlahS','".date('d-m-Y')."','$alamat','$username')";
+		('','$kodeS','$namaS','$hargaS','$jumlahS','".date('d-m-Y')."','$alamat','$username','Belum dicetak')";
 
 	mysqli_query($conn, $sementara);
 	

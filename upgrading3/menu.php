@@ -11,10 +11,16 @@ require 'functions.php';
 
 
 
-if ($_SESSION['status'] != 'admin' AND $_SESSION['status'] != 'user'){
+if ( !$_SESSION['status'] ){
+	
+
 	header("Location: index.php");
 	exit;
 }
+
+if ($_SESSION['status']== 'admin'){
+		header("Location: admin.php");
+	}
 
 
 // if (isset($_POST["cart"])){
