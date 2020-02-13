@@ -3,7 +3,7 @@
 
  
 require 'functions.php';
-var_dump($_SESSION['status']);
+
 
 if (!isset($_SESSION) ){
 

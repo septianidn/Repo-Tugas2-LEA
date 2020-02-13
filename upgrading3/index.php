@@ -46,7 +46,8 @@ if (isset($_SESSION['status'])){
  $result=mysqli_query($conn, "SELECT * FROM user WHERE 
  		username = '$username'");
 $hasil = mysqli_query($conn, "SELECT status FROM user WHERE username ='$username'");
-$status = mysqli_fetch_assoc($hasil);
+$status = implode("",mysqli_fetch_assoc($hasil));
+
  
 //cek username
 
@@ -61,9 +62,9 @@ $status = mysqli_fetch_assoc($hasil);
  		if (password_verify($password, $row["password"])){
  			//cek session
 
- 			$_SESSION = base64_encode($status);
+ 			$_SESSION['status'] = mysqli_real_escape_string($conn, $status);
  			$_SESSION['username'] = $_POST['username'];
-var_dump($_SESSION); die;
+ 			var_dump($_SESSION); die;
  			// cek cookie
  			if (isset($_POST["cek"])){
  				//buat cookie
